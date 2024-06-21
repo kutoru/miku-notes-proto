@@ -1,0 +1,39 @@
+syntax = "proto3";
+package tags;
+
+service Tags {
+    rpc CreateTag (CreateTagReq) returns (Tag);
+    rpc ReadTags (ReadTagsReq) returns (TagList);
+    rpc UpdateTag (UpdateTagReq) returns (Tag);
+    rpc DeleteTag (DeleteTagReq) returns (Empty);
+}
+
+message Empty {}
+
+message Tag {
+    int32 id = 1;
+    int32 user_id = 2;
+    string name = 3;
+    int64 created = 4;
+}
+
+message TagList {
+    repeated Tag tags = 1;
+}
+
+message CreateTagReq {
+    string name = 3;
+}
+
+message ReadTagsReq {
+    int32 user_id = 1;
+}
+
+message UpdateTagReq {
+    int32 id = 1;
+    string name = 3;
+}
+
+message DeleteTagReq {
+    int32 id = 1;
+}

@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+import "tags.proto";
+import "files.proto";
+
+package notes;
+
+service Notes {
+    rpc CreateNote (CreateNoteReq) returns (Note);
+    rpc ReadNotes (ReadNotesReq) returns (NoteList);
+    rpc UpdateNote (UpdateNoteReq) returns (Note);
+    rpc DeleteNote (DeleteNoteReq) returns (Empty);
+}
+
+message Empty {}
+
+message Note {
+    int32 id = 1;
+    int32 user_id = 2;
+    string title = 3;
+    string text = 4;
+    int64 created = 5;
+    int64 last_edited = 6;
+    int32 times_edited = 7;
+    repeated tags.Tag tags = 8;
+    repeated files.File files = 9;
+}
+
+message NoteList {
+    repeated Note notes = 1;
+}
+
+message CreateNoteReq {
+    int32 user_id = 2;
+    string title = 3;
+    string text = 4;
+}
+
+message ReadNotesReq {
+    int32 user_id = 1;
+}
+
+message UpdateNoteReq {
+    int32 id = 1;
+    string title = 3;
+    string text = 4;
+}
+
+message DeleteNoteReq {
+    int32 id = 1;
+}
