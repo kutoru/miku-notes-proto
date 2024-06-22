@@ -15,6 +15,7 @@ message Tag {
     int32 user_id = 2;
     string name = 3;
     int64 created = 4;
+    optional int32 note_id = 5;
 }
 
 message TagList {

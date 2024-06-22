@@ -16,6 +16,7 @@ message File {
     string name = 5;
     int64 size = 6;
     int64 created = 7;
+    optional int32 note_id = 8;
 }
 
 message CreateFileReq {
