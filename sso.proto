@@ -31,6 +31,7 @@ message AuthResponse {
 // Get access token
 message GetATRequest {
     string refreshToken = 1;
+    string fingerprint = 2;
 }
 message GetATResponse {
     string accessToken = 1;
