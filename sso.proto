@@ -35,5 +35,5 @@ message ValidateATRequest {
     string accessToken = 1;
 }
 message ValidateATResponse {
-    int64 userId = 1;
+    int32 userId = 1;
 }
