@@ -3,6 +3,7 @@ package files;
 
 service Files {
     rpc CreateFile (stream CreateFileReq) returns (File);
+    rpc DownloadFile (DownloadFileReq) returns (stream FileData);
     rpc DeleteFile (DeleteFileReq) returns (Empty);
 }
 
@@ -27,6 +28,22 @@ message CreateFileMetadata {
 
 message CreateFileReq {
     optional CreateFileMetadata metadata = 1;
+    bytes data = 2;
+}
+
+message DownloadFileReq {
+    int32 user_id = 1;
+    string file_hash = 2;
+}
+
+message DownloadFileMetadata {
+    string name = 1;
+    int64 size = 2;
+    int32 expected_parts = 3;
+}
+
+message FileData {
+    optional DownloadFileMetadata metadata = 1;
     bytes data = 2;
 }
 
