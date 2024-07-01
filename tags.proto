@@ -23,7 +23,8 @@ message TagList {
 }
 
 message CreateTagReq {
-    string name = 3;
+    int32 user_id = 1;
+    string name = 2;
 }
 
 message ReadTagsReq {
@@ -32,9 +33,11 @@ message ReadTagsReq {
 
 message UpdateTagReq {
     int32 id = 1;
+    int32 user_id = 2;
     string name = 3;
 }
 
 message DeleteTagReq {
     int32 id = 1;
+    int32 user_id = 2;
 }
