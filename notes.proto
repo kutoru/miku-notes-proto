@@ -39,8 +39,33 @@ message CreateNoteReq {
     string text = 3;
 }
 
+message Sort {
+    bool asc = 1;
+    SortType sort_type = 2;
+
+    enum SortType {
+        DATE = 0;
+        DATE_MODIF = 1;
+        TITLE = 2;
+    }
+}
+
+message Filters {
+    optional FilterTags filter_tags = 1;
+    optional FilterDate filter_date = 2;
+    optional FilterDateModif filter_date_modif = 3;
+    optional FilterSearch filter_search = 4;
+
+    message FilterTags { repeated int32 tag_ids = 1; }
+    message FilterDate { int64 start = 1; int64 end = 2; }
+    message FilterDateModif { int64 start = 1; int64 end = 2; }
+    message FilterSearch { string query = 1; }
+}
+
 message ReadNotesReq {
     int32 user_id = 1;
+    Sort sort = 2;
+    Filters filters = 3;
 }
 
 message UpdateNoteReq {
