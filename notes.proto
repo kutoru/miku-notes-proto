@@ -31,6 +31,7 @@ message Note {
 
 message NoteList {
     repeated Note notes = 1;
+    int32 total_count = 2;
 }
 
 message CreateNoteReq {
