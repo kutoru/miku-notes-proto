@@ -39,11 +39,20 @@ message CreateNoteReq {
     string text = 3;
 }
 
-message Sort {
-    bool asc = 1;
-    SortType sort_type = 2;
+message Pagination {
+    int32 page = 1;
+    int32 per_page = 2;
+}
 
-    enum SortType {
+message Sort {
+    Type sort_type = 1;
+    Field sort_field = 2;
+
+    enum Type {
+        DESC = 0;
+        ASC = 1;
+    }
+    enum Field {
         DATE = 0;
         DATE_MODIF = 1;
         TITLE = 2;
@@ -51,21 +60,22 @@ message Sort {
 }
 
 message Filters {
-    optional FilterTags filter_tags = 1;
-    optional FilterDate filter_date = 2;
-    optional FilterDateModif filter_date_modif = 3;
-    optional FilterSearch filter_search = 4;
+    optional Tags filter_tags = 1;
+    optional Date filter_date = 2;
+    optional DateModif filter_date_modif = 3;
+    optional Search filter_search = 4;
 
-    message FilterTags { repeated int32 tag_ids = 1; }
-    message FilterDate { int64 start = 1; int64 end = 2; }
-    message FilterDateModif { int64 start = 1; int64 end = 2; }
-    message FilterSearch { string query = 1; }
+    message Tags { repeated int32 tag_ids = 1; }
+    message Date { int64 start = 1; int64 end = 2; }
+    message DateModif { int64 start = 1; int64 end = 2; }
+    message Search { string query = 1; }
 }
 
 message ReadNotesReq {
     int32 user_id = 1;
-    Sort sort = 2;
-    Filters filters = 3;
+    Pagination pagination = 2;
+    Sort sort = 3;
+    Filters filters = 4;
 }
 
 message UpdateNoteReq {
