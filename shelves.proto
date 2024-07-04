@@ -7,6 +7,7 @@ package shelves;
 service Shelves {
     rpc ReadShelf (ReadShelfReq) returns (Shelf);
     rpc UpdateShelf (UpdateShelfReq) returns (Shelf);
+    rpc ClearShelf (ClearShelfReq) returns (Shelf);
     rpc ConvertToNote (ConvertToNoteReq) returns (Shelf);
 }
 
@@ -32,5 +33,11 @@ message UpdateShelfReq {
 }
 
 message ConvertToNoteReq {
+    int32 user_id = 1;
+    string note_title = 2;
+    string note_text = 3;
+}
+
+message ClearShelfReq {
     int32 user_id = 1;
 }
