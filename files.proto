@@ -26,7 +26,6 @@ message CreateFileMetadata {
         int32 shelf_id = 3;
     }
     string name = 4;
-    int32 expected_parts = 5;
 }
 
 message CreateFileReq {
@@ -42,7 +41,6 @@ message DownloadFileReq {
 message DownloadFileMetadata {
     string name = 1;
     int64 size = 2;
-    int32 expected_parts = 3;
 }
 
 message FileData {
