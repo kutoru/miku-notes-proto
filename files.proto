@@ -26,6 +26,7 @@ message CreateFileMetadata {
         int32 shelf_id = 3;
     }
     string name = 4;
+    uint64 file_size = 5;
 }
 
 message CreateFileReq {
